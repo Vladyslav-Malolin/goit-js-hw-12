@@ -31,11 +31,12 @@ form.addEventListener("submit", async (event) => {
 loadMoreBtn.addEventListener("click", async () => {
     page += 1;
     await loadImages();
+    smoothScroll();
 });
 
 async function loadImages() {
     loader.classList.remove("hidden");
-    
+
     try {
         const images = await fetchImages(query, page, perPage);
         if (images.length === 0 && page === 1) {
@@ -55,3 +56,18 @@ async function loadImages() {
         loader.classList.add("hidden");
     }
 }
+
+function smoothScroll() {
+    const images = document.querySelectorAll(".gallery-item");
+    if (images.length < perPage) return;
+    const lastLoadedRow = [...images].slice(-perPage);
+    if (lastLoadedRow.length > 0) {
+        lastLoadedRow[0].scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+        });
+    }
+}
+
+
+

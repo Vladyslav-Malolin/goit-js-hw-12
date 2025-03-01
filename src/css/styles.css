@@ -60,7 +60,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(auto-fill, minmax(200px, 1fr));
-    margin: 0 auto;
+    margin: 0;
     gap: 24px;
     width: 1128px;
     height: auto;
